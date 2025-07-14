@@ -1,3 +1,5 @@
+/* CONTAINERS */
+
 .container-main{
     width: 1440px;
     margin: 0 auto;
@@ -6,4 +8,53 @@
 .container-medium{
     width: 1216px;
     margin: 0 auto;
+}
+
+@media (max-width: 1440px) {
+    .container-main{
+        width: 100%;
+    }
+}
+
+/* Mobile Menu */
+.close-menu{
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Burger Menu Animation */
+.burger-menu {
+    cursor: pointer;
+    z-index: 60;
+}
+
+.burger-menu span {
+    transform-origin: center;
+    transition: all 0.3s ease;
+}
+
+.burger-menu.active .span-1 {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger-menu.active .span-2 {
+    opacity: 0;
+}
+
+.burger-menu.active .span-3 {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Mobile Menu */
+.menu-hidden {
+    z-index: 50;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 1216px) {
+    .container-medium{
+        width: 100%;
+        padding: 0 20px;
+    }
 }
