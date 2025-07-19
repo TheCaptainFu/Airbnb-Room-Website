@@ -704,6 +704,10 @@ video {
   margin-top: 5rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .block {
   display: block;
 }
@@ -877,6 +881,10 @@ video {
   max-width: 100%;
 }
 
+.max-w-4xl {
+  max-width: 56rem;
+}
+
 .flex-shrink-0 {
   flex-shrink: 0;
 }
@@ -901,6 +909,14 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.list-inside {
+  list-style-position: inside;
+}
+
+.list-disc {
+  list-style-type: disc;
 }
 
 .grid-cols-1 {
@@ -1298,6 +1314,10 @@ video {
   padding-top: 40px;
 }
 
+.pt-\[60px\] {
+  padding-top: 60px;
+}
+
 .text-center {
   text-align: center;
 }
@@ -1649,6 +1669,10 @@ video {
 
   .xs\:items-center {
     align-items: center;
+  }
+
+  .xs\:justify-end {
+    justify-content: flex-end;
   }
 
   .xs\:justify-center {
