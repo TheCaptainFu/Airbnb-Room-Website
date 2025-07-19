@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Blankonia</title>
+    <link href="../css/output.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <script src="../js/home.js"></script>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="navbar bg-black shadow-lg fixed top-0 left-0 right-0 z-50">
+
+        <!-- DESKTOP MENU -->
+        <div class="menu container-main flex items-center justify-between w-full h-[70px] text-white px-6">
+            <!-- LOGO -->
+            <div class="logo flex items-center justify-center">
+                <h1 class="text-2xl font-bold text-white">Blankonia</h1>
+            </div>
+            <!-- NAVIGATION -->
+            <div class="navbar-items flex items-center justify-center hidden tab:flex">
+                <ul class="flex items-center justify-center gap-8">
+                    <li><a href="index.html" class="font-semibold text-lg hover:text-custom-gold transition-colors duration-300">Home</a></li>
+                    <li><a href="gallery.html" class="font-semibold text-lg text-custom-gold">Gallery</a></li>
+                    <li><a href="contact.html" class="font-semibold text-lg hover:text-custom-gold transition-colors duration-300">Contact</a></li>
+                </ul>
+            </div>
+            <!-- BURGER MENU -->
+            <button id="burger" class="burger-menu flex flex-col justify-center gap-[6px] w-[30px] h-6 tab:hidden">
+                <span class="span-1 block h-[2px] bg-white transition-all duration-300 "></span>
+                <span class="span-2 block h-[2px] bg-white transition-all duration-300 "></span>
+                <span class="span-3 block h-[2px] bg-white transition-all duration-300 "></span>
+            </button>
+        </div>
+
+        <!-- MOBILE MENU -->    
+        <div class="menu-hidden close-menu">
+            <ul class="flex flex-col items-center justify-center gap-8 w-[100vw] h-[calc(100vh-70px)] bg-black text-white absolute top-[70px] left-0">
+                <li><a href="index.html" class="font-semibold text-[22px] hover:text-custom-gold transition-colors duration-300">Home</a></li>
+                <li><a href="gallery.html" class="font-semibold text-[22px] text-custom-gold">Gallery</a></li>
+                <li><a href="contact.html" class="font-semibold text-[22px] hover:text-custom-gold transition-colors duration-300">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <div class="hero bg-black py-[120px] xs:py-[140px] tab:py-[160px]">
+        <div class="container-medium">
+            <div class="text-center text-white">
+                <h1 class="text-3xl xs:text-4xl tab:text-5xl lap:text-6xl font-bold mb-4 xs:mb-6">
+                    Our Gallery
+                </h1>
+                <div class="w-[80px] h-[4px] bg-custom-gold mx-auto mb-4 xs:mb-6"></div>
+                <p class="text-lg xs:text-xl tab:text-2xl text-custom-grey max-w-3xl mx-auto">
+                    Explore the beauty and luxury of our accommodation through our stunning photo collection
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- GALLERY CATEGORIES -->
+    <div class="gallery-categories py-[60px] xs:py-[80px] tab:py-[100px]">
+        <div class="container-medium">
+            <div class="text-center mb-[50px] xs:mb-[60px] tab:mb-[80px]">
+                <h2 class="text-2xl xs:text-3xl tab:text-4xl font-bold mb-4 xs:mb-5">Browse by Category</h2>
+                <div class="w-[60px] h-[3px] bg-custom-gold mx-auto mb-4 xs:mb-5"></div>
+                <p class="text-custom-grey text-base xs:text-lg">Click on any category to view all photos</p>
+            </div>
+            
+            <div class="grid grid-cols-1 tab:grid-cols-3 gap-6 xs:gap-8 tab:gap-10">
+                <!-- Living Room Category -->
+                <div class="gallery-category relative overflow-hidden rounded-lg group cursor-pointer aspect-[4/3] shadow-lg" onclick="openGalleryModal('living-room')">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Living Room" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300"></div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                        <h3 class="text-xl xs:text-2xl tab:text-3xl font-bold mb-2">Living Room</h3>
+                        <p class="text-sm xs:text-base text-custom-gold font-semibold">6 Photos</p>
+                    </div>
+                </div>
+
+                <!-- Kitchen Category -->
+                <div class="gallery-category relative overflow-hidden rounded-lg group cursor-pointer aspect-[4/3] shadow-lg" onclick="openGalleryModal('kitchen')">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kitchen" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300"></div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                        <h3 class="text-xl xs:text-2xl tab:text-3xl font-bold mb-2">Kitchen</h3>
+                        <p class="text-sm xs:text-base text-custom-gold font-semibold">6 Photos</p>
+                    </div>
+                </div>
+
+                <!-- Bedroom Category -->
+                <div class="gallery-category relative overflow-hidden rounded-lg group cursor-pointer aspect-[4/3] shadow-lg" onclick="openGalleryModal('bedroom')">
+                    <img src="../images/bedroom/bedroom-1.jpg" alt="Bedroom" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300"></div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                        <h3 class="text-xl xs:text-2xl tab:text-3xl font-bold mb-2">Bedroom</h3>
+                        <p class="text-sm xs:text-base text-custom-gold font-semibold">6 Photos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer bg-black py-[40px] xs:py-[60px] tab:py-[80px]">
+        <div class="container-medium">
+            <div class="grid grid-cols-1 xs:grid-cols-2 tab:grid-cols-4 gap-6 xs:gap-8 mb-8 xs:mb-10 tab:mb-12">
+                <!-- Brand Section -->
+                <div class="col-span-1 xs:col-span-2 tab:col-span-2">
+                    <h3 class="text-xl xs:text-2xl font-bold text-white mb-3 xs:mb-4">Blankonia</h3>
+                    <p class="text-custom-grey mb-4 xs:mb-6 leading-relaxed text-sm xs:text-base">
+                        Experience luxury and comfort in our stunning retreat. Where every detail has been meticulously crafted for an extraordinary stay.
+                    </p>
+                    <div class="flex space-x-3 xs:space-x-4">
+                        <!-- Facebook -->
+                        <a href="#" class="text-custom-grey hover:text-custom-gold transition-colors duration-300">
+                            <svg class="w-5 h-5 xs:w-6 xs:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="#" class="text-custom-grey hover:text-custom-gold transition-colors duration-300">
+                            <svg class="w-5 h-5 xs:w-6 xs:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <!-- Twitter/X -->
+                        <a href="#" class="text-custom-grey hover:text-custom-gold transition-colors duration-300">
+                            <svg class="w-5 h-5 xs:w-6 xs:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="xs:col-span-1 tab:col-span-1">
+                    <h4 class="text-white font-semibold mb-3 xs:mb-4 text-sm xs:text-base">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-custom-grey hover:text-custom-gold transition-colors duration-300 text-sm xs:text-base">Home</a></li>
+                        <li><a href="gallery.html" class="text-custom-grey hover:text-custom-gold transition-colors duration-300 text-sm xs:text-base">Gallery</a></li>
+                        <li><a href="contact.html" class="text-custom-grey hover:text-custom-gold transition-colors duration-300 text-sm xs:text-base">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="xs:col-span-1 tab:col-span-1">
+                    <h4 class="text-white font-semibold mb-3 xs:mb-4 text-sm xs:text-base">Contact</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start xs:items-center space-x-3">
+                            <svg class="w-4 h-4 xs:w-5 xs:h-5 text-custom-gold flex-shrink-0 mt-1 xs:mt-0" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            <span class="text-custom-grey text-sm xs:text-base">Athens-Metaxourgeio, Greece</span>
+                        </div>
+                        <div class="flex items-start xs:items-center space-x-3">
+                            <svg class="w-4 h-4 xs:w-5 xs:h-5 text-custom-gold flex-shrink-0 mt-1 xs:mt-0" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                            <span class="text-custom-grey text-sm xs:text-base">(+30) 698 6719272</span>
+                        </div>
+                        <div class="flex items-start xs:items-center space-x-3">
+                            <svg class="w-4 h-4 xs:w-5 xs:h-5 text-custom-gold flex-shrink-0 mt-1 xs:mt-0" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            <span class="text-custom-grey text-sm xs:text-base">blankonia@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Section -->
+            <div class="border-t border-custom-dark-grey pt-6 xs:pt-8">
+                <div class="flex flex-col xs:flex-row justify-between items-center">
+                    <p class="text-custom-grey text-xs xs:text-sm mb-4 xs:mb-0 text-center xs:text-left">
+                        © 2024 Blankonia.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GALLERY MODAL -->
+    <div id="galleryModal" class="fixed inset-0 bg-black bg-opacity-95 hidden items-center justify-center z-50">
+        <div class="relative w-full h-full flex items-center justify-center p-4">
+            <!-- Close Button -->
+            <button onclick="closeGalleryModal()" class="absolute top-4 right-4 z-60 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-70 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            
+            <!-- Modal Header -->
+            <div class="absolute top-4 left-1/2 transform -translate-x-1/2 text-center z-60">
+                <h2 id="modalTitle" class="text-xl xs:text-2xl tab:text-3xl font-bold text-white mb-2"></h2>
+                <div class="w-[50px] h-[3px] bg-custom-gold mx-auto"></div>
+                <p id="imageCounter" class="text-white text-sm mt-2"></p>
+            </div>
+            
+            <!-- Large Image -->
+            <img id="galleryImage" src="" alt="" class="max-w-full max-h-[calc(100vh-150px)] object-contain mt-20">
+            
+            <!-- Navigation Arrows -->
+            <button id="prevImage" onclick="previousImage()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-70 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <button id="nextImage" onclick="nextImage()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-70 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Gallery data with multiple photos for each category
+        const galleryData = {
+            'living-room': {
+                title: 'Living Room',
+                images: [
+                    'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1540932239986-30128078f3c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                ]
+            },
+            'kitchen': {
+                title: 'Kitchen',
+                images: [
+                    'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1556909211-36987daf7b4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1556909114-5ba6de8bb948?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1571835405934-bf32bdc5b291?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                ]
+            },
+            'bedroom': {
+                title: 'Bedroom',
+                images: [
+                    '../images/bedroom/bedroom-1.jpg',
+                    'https://images.unsplash.com/photo-1571508601936-6de5ad57c4bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                ]
+            }
+        };
+
+        let currentCategory = '';
+        let currentImageIndex = 0;
+        let currentImages = [];
+        const categories = ['living-room', 'kitchen', 'bedroom'];
+
+        function openGalleryModal(category) {
+            currentCategory = category;
+            currentImages = galleryData[category].images;
+            currentImageIndex = 0; // Start with first image
+            
+            const modal = document.getElementById('galleryModal');
+            const title = document.getElementById('modalTitle');
+            const image = document.getElementById('galleryImage');
+            const counter = document.getElementById('imageCounter');
+            
+            title.textContent = galleryData[category].title;
+            image.src = currentImages[currentImageIndex];
+            image.alt = galleryData[category].title;
+            counter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGalleryModal() {
+            const modal = document.getElementById('galleryModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        function previousImage() {
+            currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+            const image = document.getElementById('galleryImage');
+            const counter = document.getElementById('imageCounter');
+            
+            image.src = currentImages[currentImageIndex];
+            counter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+            const image = document.getElementById('galleryImage');
+            const counter = document.getElementById('imageCounter');
+            
+            image.src = currentImages[currentImageIndex];
+            counter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
+        }
+
+        // Close modal when clicking outside or pressing escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeGalleryModal();
+            }
+            if (e.key === 'ArrowLeft') {
+                previousImage();
+            }
+            if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        });
+
+        document.getElementById('galleryModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeGalleryModal();
+            }
+        });
+    </script>
+
+</body>
+</html> 
