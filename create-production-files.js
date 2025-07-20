@@ -5,7 +5,7 @@ const path = require('path');
 const pathMappings = {
     '../css/': 'css/',
     '../js/': 'js/',
-    '../html/cookie-banner.js': 'cookie-banner.js',
+    '../cookie-banner.js': 'cookie-banner.js',
     '../images/': 'images/'
 };
 
