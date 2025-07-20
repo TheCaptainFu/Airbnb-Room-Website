@@ -59,17 +59,23 @@
     }
 }
 
-/* Tab Gallery Styles */
+/* Tab Gallery Styles - Enhanced for better hosting compatibility */
+.tab-navigation {
+    margin-bottom: 2rem;
+}
+
 .tab-navigation .tab-btn {
     background-color: transparent;
     color: #6b7280;
     border-color: #6b7280;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .tab-navigation .tab-btn.active {
-    background-color: #fbbf24;
-    color: #000;
-    border-color: #fbbf24;
+    background-color: #fbbf24 !important;
+    color: #000 !important;
+    border-color: #fbbf24 !important;
 }
 
 .tab-navigation .tab-btn:hover {
@@ -78,23 +84,38 @@
     border-color: #fbbf24;
 }
 
+.tab-content {
+    width: 100%;
+    position: relative;
+}
+
 .tab-content .tab-pane {
-    display: none;
+    display: none !important;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }
 
 .tab-content .tab-pane.active {
-    display: block;
+    display: block !important;
+    opacity: 1;
+    visibility: visible;
 }
 
-/* Masonry Gallery Layout */
+/* Masonry Gallery Layout - Enhanced for better hosting compatibility */
 .masonry-grid {
     padding: 20px 0;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 20px;
-    grid-auto-rows: 10px;
-    justify-content: center;
+    max-width: 1200px;
+    -webkit-columns: 4;
+    -moz-columns: 4;
+    columns: 4;
+    -webkit-column-gap: 20px;
+    -moz-column-gap: 20px;
+    column-gap: 20px;
+    -webkit-column-fill: balance;
+    -moz-column-fill: balance;
+    column-fill: balance;
 }
 
 .gallery-item {
@@ -103,7 +124,14 @@
     border-radius: 0;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    grid-row-end: span var(--grid-row-span, 30);
+    margin-bottom: 20px;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
 }
 
 .gallery-item:hover {
@@ -113,21 +141,43 @@
 
 @media (max-width: 1200px) {
     .masonry-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        -webkit-columns: 3;
+        -moz-columns: 3;
+        columns: 3;
+        -webkit-column-gap: 18px;
+        -moz-column-gap: 18px;
+        column-gap: 18px;
+    }
+    .gallery-item {
+        margin-bottom: 18px;
     }
 }
 
 @media (max-width: 768px) {
     .masonry-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 15px;
+        -webkit-columns: 2;
+        -moz-columns: 2;
+        columns: 2;
+        -webkit-column-gap: 15px;
+        -moz-column-gap: 15px;
+        column-gap: 15px;
+    }
+    .gallery-item {
+        margin-bottom: 15px;
     }
 }
 
 @media (max-width: 480px) {
     .masonry-grid {
-        grid-template-columns: 1fr;
-        grid-gap: 15px;
+        -webkit-columns: 1;
+        -moz-columns: 1;
+        columns: 1;
+        -webkit-column-gap: 0;
+        -moz-column-gap: 0;
+        column-gap: 0;
+    }
+    .gallery-item {
+        margin-bottom: 15px;
     }
 }
 
@@ -192,6 +242,45 @@
 @media (min-width: 768px) {
     .gallery-item .image-title {
         font-size: 1rem;
+    }
+}
+
+/* Fallback Grid Layout for browsers that don't support CSS columns properly */
+@supports not (columns: 4) {
+    .masonry-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        columns: unset;
+        column-gap: unset;
+    }
+    
+    @media (max-width: 1200px) {
+        .masonry-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .masonry-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .masonry-grid {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+    }
+}
+
+/* Force CSS columns for modern browsers */
+@supports (columns: 4) {
+    .masonry-grid {
+        display: block !important;
     }
 }
 

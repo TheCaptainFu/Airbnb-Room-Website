@@ -7,6 +7,147 @@
     <link href="css/output.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/cookie-banner.css" rel="stylesheet">
+    <style>
+        /* Critical CSS for immediate masonry layout */
+        .masonry-grid {
+            -webkit-columns: 4 !important;
+            -moz-columns: 4 !important;
+            columns: 4 !important;
+            -webkit-column-gap: 20px !important;
+            -moz-column-gap: 20px !important;
+            column-gap: 20px !important;
+            padding: 20px 0 !important;
+            margin: 0 auto !important;
+            max-width: 1200px !important;
+        }
+        .gallery-item {
+            -webkit-column-break-inside: avoid !important;
+            break-inside: avoid !important;
+            margin-bottom: 20px !important;
+            display: inline-block !important;
+            width: 100% !important;
+            position: relative !important;
+            overflow: hidden !important;
+            border-radius: 0 !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+            vertical-align: top !important;
+            cursor: pointer !important;
+        }
+        
+        /* Critical Hover Effects */
+        .gallery-item:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+            z-index: 10 !important;
+        }
+        
+        .gallery-item img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            cursor: pointer !important;
+            filter: brightness(1) !important;
+        }
+        
+        .gallery-item:hover img {
+            filter: brightness(1.1) contrast(1.05) !important;
+        }
+        
+        /* Critical Image Overlay */
+        .gallery-item .image-overlay {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            background: linear-gradient(to bottom, transparent 0%, transparent 40%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.8) 100%) !important;
+            opacity: 0 !important;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            display: flex !important;
+            align-items: flex-end !important;
+            padding: 1rem !important;
+        }
+        
+        .gallery-item:hover .image-overlay {
+            opacity: 1 !important;
+        }
+        
+        .gallery-item .image-title {
+            color: white !important;
+            font-weight: 600 !important;
+            font-size: 1rem !important;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
+            line-height: 1.2 !important;
+            letter-spacing: 0.02em !important;
+        }
+        
+        /* Critical Tab Styles */
+        .tab-navigation {
+            margin-bottom: 2rem !important;
+        }
+        
+        .tab-navigation .tab-btn {
+            background-color: transparent !important;
+            color: #6b7280 !important;
+            border: 2px solid #6b7280 !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 9999px !important;
+            font-weight: 600 !important;
+        }
+        
+        .tab-navigation .tab-btn.active {
+            background-color: #fbbf24 !important;
+            color: #000 !important;
+            border-color: #fbbf24 !important;
+        }
+        
+        .tab-navigation .tab-btn:hover {
+            background-color: #fbbf24 !important;
+            color: #000 !important;
+            border-color: #fbbf24 !important;
+        }
+        
+        /* Critical Tab Content */
+        .tab-content {
+            width: 100% !important;
+            position: relative !important;
+        }
+        
+        .tab-pane { 
+            display: none !important; 
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+        .tab-pane.active { 
+            display: block !important; 
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .masonry-grid { -webkit-columns: 3 !important; columns: 3 !important; }
+        }
+        @media (max-width: 768px) {
+            .masonry-grid { -webkit-columns: 2 !important; columns: 2 !important; }
+            .gallery-item .image-title { font-size: 0.875rem !important; }
+            .gallery-item .image-overlay { padding: 0.75rem !important; }
+        }
+        @media (max-width: 480px) {
+            .masonry-grid { -webkit-columns: 1 !important; columns: 1 !important; }
+            .gallery-item .image-title { font-size: 0.75rem !important; }
+            .tab-navigation .tab-btn { 
+                width: 100% !important; 
+                margin-bottom: 0.5rem !important;
+                font-size: 0.875rem !important;
+            }
+        }
+    </style>
     <script src="js/home.js"></script>
     <script src="cookie-banner.js"></script>
 </head>
@@ -163,6 +304,109 @@
                                 <h4 class="image-title">Modern Interior</h4>
                             </div>
                         </div>
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1615529328331-f8917597711f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Stylish Room">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Stylish Room</h4>
+                            </div>
+                        </div>
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Contemporary Living">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Contemporary</h4>
+                            </div>
+                        </div>
+                        <!-- Vertical -->
+                        <div class="gallery-item vertical relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Living Space Details">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Living Space Details</h4>
+                            </div>
+                        </div>
+                        <!-- Large Square (feature) -->
+                        <div class="gallery-item square large relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Comfortable Ambiance">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Comfortable Ambiance</h4>
+                            </div>
+                        </div>
+                        <!-- Square -->
+                        <div class="gallery-item square relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Modern Furniture">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Modern Furniture</h4>
+                            </div>
+                        </div>
+                        <!-- Horizontal -->
+                        <div class="gallery-item horizontal relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Modern Sofa">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Comfortable Seating</h4>
+                            </div>
+                        </div>
+                        <!-- Square -->
+                        <div class="gallery-item square relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Interior Design">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Perfect Design</h4>
+                            </div>
+                        </div>
+                        <!-- Vertical -->
+                        <div class="gallery-item vertical relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Living Area">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Open Living</h4>
+                            </div>
+                        </div>
+                        <!-- Square -->
+                        <div class="gallery-item square relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Living Space">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Spacious Living</h4>
+                            </div>
+                        </div>
+                        <!-- Horizontal -->
+                        <div class="gallery-item horizontal relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1513161455079-7dc1de15ef3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Home Interior">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Modern Interior</h4>
+                            </div>
+                        </div>
+                        <!-- Square -->
+                        <div class="gallery-item square relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1615529328331-f8917597711f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Stylish Room">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Stylish Ambiance</h4>
+                            </div>
+                        </div>
+                        <!-- Vertical -->
+                        <div class="gallery-item vertical relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Contemporary Living">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Contemporary Style</h4>
+                            </div>
+                        </div>
+                        <!-- Square -->
+                        <div class="gallery-item square relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Minimalist Design">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Minimalist Charm</h4>
+                            </div>
+                        </div>
+                        <!-- Horizontal -->
+                        <div class="gallery-item horizontal relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Modern Living">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Modern Living</h4>
+                            </div>
+                        </div>
+                        <!-- Square -->
+                        <div class="gallery-item square relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cozy Space">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Cozy Space</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -173,12 +417,6 @@
                             <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Modern Kitchen">
                             <div class="image-overlay">
                                 <h4 class="image-title">Modern Kitchen</h4>
-                            </div>
-                        </div>
-                        <div class="gallery-item relative" onclick="openImageModal(this)">
-                            <img src="https://images.unsplash.com/photo-1556909114-35a6dd06a96b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Kitchen Island">
-                            <div class="image-overlay">
-                                <h4 class="image-title">Kitchen Island</h4>
                             </div>
                         </div>
                         <div class="gallery-item relative" onclick="openImageModal(this)">
@@ -235,28 +473,104 @@
                                 <h4 class="image-title">Dining Area</h4>
                             </div>
                         </div>
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dining Space">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Dining Space</h4>
+                            </div>
+                        </div>
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Kitchen Workspace">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Kitchen Workspace</h4>
+                            </div>
+                        </div>
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1556909211-36987daf7b4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Breakfast Bar">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Breakfast Bar</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1574180045827-681f8a1a9622?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dining Area">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Dining Area</h4>
+                            </div>
+                        </div>
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Kitchen Counter">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Kitchen Counter</h4>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Chef Kitchen">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Chef's Kitchen</h4>
+                            </div>
+                        </div>
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1556912998-c57cc6b63cd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Kitchen Design">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Luxury Design</h4>
+                            </div>
+                        </div>
+                        <!-- Small -->
+                        <div class="gallery-item small relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cooking Space">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Cooking Paradise</h4>
+                            </div>
+                        </div>
+                        <!-- Wide -->
+                        <div class="gallery-item wide relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Kitchen Style">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Modern Style</h4>
+                            </div>
+                        </div>
+                       
+                       
+                        <!-- Small -->
+                        <div class="gallery-item small relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Kitchen Atmosphere">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Warm Atmosphere</h4>
+                            </div>
+                        </div>
+                        <!-- Square -->
+                        <div class="gallery-item square relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Modern Kitchen">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Modern Kitchen</h4>
+                            </div>
+                        </div>
+                        <!-- Small -->
+                        <div class="gallery-item small relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Kitchen Island">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Kitchen Island</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Bedroom Tab -->
                 <div class="tab-pane" id="bedroom">
                     <div class="masonry-grid">
+                       
                         <div class="gallery-item relative" onclick="openImageModal(this)">
-                            <img src="images/bedroom/bedroom-1.jpg" alt="Master Bedroom">
+                            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Elegant Decor">
                             <div class="image-overlay">
-                                <h4 class="image-title">Master Bedroom</h4>
+                                <h4 class="image-title">Elegant Decor</h4>
                             </div>
                         </div>
                         <div class="gallery-item relative" onclick="openImageModal(this)">
                             <img src="https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Bedroom View">
                             <div class="image-overlay">
                                 <h4 class="image-title">Bedroom View</h4>
-                            </div>
-                        </div>
-                        <div class="gallery-item relative" onclick="openImageModal(this)">
-                            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Elegant Decor">
-                            <div class="image-overlay">
-                                <h4 class="image-title">Elegant Decor</h4>
                             </div>
                         </div>
                         <div class="gallery-item relative" onclick="openImageModal(this)">
@@ -271,30 +585,98 @@
                                 <h4 class="image-title">Wardrobe Area</h4>
                             </div>
                         </div>
-                        <div class="gallery-item relative" onclick="openImageModal(this)">
-                            <img src="https://images.unsplash.com/photo-1540518614846-7eded47fa898?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bedroom Style">
-                            <div class="image-overlay">
-                                <h4 class="image-title">Bedroom Style</h4>
-                            </div>
-                        </div>
+                       
                         <div class="gallery-item relative" onclick="openImageModal(this)">
                             <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Bedroom Lighting">
                             <div class="image-overlay">
                                 <h4 class="image-title">Perfect Lighting</h4>
                             </div>
                         </div>
-                        <div class="gallery-item relative" onclick="openImageModal(this)">
-                            <img src="https://images.unsplash.com/photo-1566908829176-ba37f62bb207?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Comfortable Bedding">
-                            <div class="image-overlay">
-                                <h4 class="image-title">Comfortable Bedding</h4>
-                            </div>
-                        </div>
+                        
                         <div class="gallery-item relative" onclick="openImageModal(this)">
                             <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Bedroom Design">
                             <div class="image-overlay">
                                 <h4 class="image-title">Bedroom Design</h4>
                             </div>
                         </div>
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Wardrobe Area">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Wardrobe Area</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bedroom Lighting">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Perfect Lighting</h4>
+                            </div>
+                        </div>
+                      
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sleeping Comfort">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Ultimate Comfort</h4>
+                            </div>
+                        </div>
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bedroom Details">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Thoughtful Details</h4>
+                            </div>
+                        </div>
+                      
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Rest Area">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Perfect Rest</h4>
+                            </div>
+                        </div>
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bedroom Comfort">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Maximum Comfort</h4>
+                            </div>
+                        </div>
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nightstand">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Bedside Luxury</h4>
+                            </div>
+                        </div>
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Storage Space">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Smart Storage</h4>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bedroom Ambiance">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Perfect Ambiance</h4>
+                            </div>
+                        </div>
+                      
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bedroom Design">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Sophisticated Design</h4>
+                            </div>
+                        </div>
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bedroom Window">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Natural Light</h4>
+                            </div>
+                        </div>
+                        <div class="gallery-item relative" onclick="openImageModal(this)">
+                            <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bedroom Views">
+                            <div class="image-overlay">
+                                <h4 class="image-title">Peaceful Views</h4>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -534,56 +916,93 @@
     </script>
 
     <script>
-        // CSS Grid Masonry Implementation (fallback for hosting issues)
-        function initializeMasonry() {
-            const grids = document.querySelectorAll('.masonry-grid');
-            
-            grids.forEach(function(grid) {
-                const items = grid.querySelectorAll('.gallery-item');
-                
-                items.forEach(function(item) {
-                    const img = item.querySelector('img');
-                    
-                    if (img.complete) {
-                        setGridSpan(item, img);
-                    } else {
-                        img.addEventListener('load', function() {
-                            setGridSpan(item, img);
-                        });
-                    }
-                });
-            });
-        }
-        
-        function setGridSpan(item, img) {
-            const aspectRatio = img.naturalHeight / img.naturalWidth;
-            const gridRowSpan = Math.ceil(aspectRatio * 30);
-            item.style.setProperty('--grid-row-span', gridRowSpan);
-        }
-        
-        // Initialize on page load
+        // Enhanced Masonry Layout with better hosting compatibility
         document.addEventListener('DOMContentLoaded', function() {
-            initializeMasonry();
+            console.log('DOM loaded, initializing masonry...');
             
-            // Handle tab switching
+            // Force masonry layout on page load
+            function forceMasonryLayout() {
+                const allGrids = document.querySelectorAll('.masonry-grid');
+                allGrids.forEach(function(grid) {
+                    // Force CSS columns
+                    grid.style.webkitColumns = '4';
+                    grid.style.mozColumns = '4';
+                    grid.style.columns = '4';
+                    grid.style.webkitColumnGap = '20px';
+                    grid.style.mozColumnGap = '20px';
+                    grid.style.columnGap = '20px';
+                    
+                    // Force items to break correctly
+                    const items = grid.querySelectorAll('.gallery-item');
+                    items.forEach(function(item) {
+                        item.style.webkitColumnBreakInside = 'avoid';
+                        item.style.breakInside = 'avoid';
+                        item.style.display = 'inline-block';
+                        item.style.width = '100%';
+                        item.style.marginBottom = '20px';
+                    });
+                });
+                console.log('Masonry layout forced');
+            }
+            
+            // Initial layout
+            forceMasonryLayout();
+            
+            // Force layout after images load
+            setTimeout(forceMasonryLayout, 100);
+            setTimeout(forceMasonryLayout, 500);
+            setTimeout(forceMasonryLayout, 1000);
+            
+            // Enhanced tab switching
             const tabButtons = document.querySelectorAll('.tab-btn');
             tabButtons.forEach(function(btn) {
                 btn.addEventListener('click', function() {
+                    console.log('Tab clicked:', this.getAttribute('data-tab'));
+                    
+                    // Wait a bit for tab content to show
                     setTimeout(function() {
-                        initializeMasonry();
-                    }, 100);
+                        forceMasonryLayout();
+                        
+                        // Force repaint for CSS columns
+                        const activeGrid = document.querySelector('.tab-pane.active .masonry-grid');
+                        if (activeGrid) {
+                            activeGrid.style.visibility = 'hidden';
+                            activeGrid.offsetHeight; // Force reflow
+                            activeGrid.style.visibility = 'visible';
+                            console.log('Active grid repainted');
+                        }
+                    }, 50);
                 });
             });
             
-            // Handle window resize
-            let resizeTimeout;
+            // Force layout on window resize
             window.addEventListener('resize', function() {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(function() {
-                    initializeMasonry();
-                }, 250);
+                setTimeout(forceMasonryLayout, 100);
             });
         });
+
+        // Re-layout masonry when tab changes
+        function showTab(tabName) {
+            // Hide all tab panes
+            const panes = document.querySelectorAll('.tab-pane');
+            panes.forEach(pane => pane.classList.remove('active'));
+
+            // Show selected tab pane
+            document.getElementById(tabName).classList.add('active');
+
+            // Update tab buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+
+            // Re-layout masonry for the active tab
+            setTimeout(() => {
+                const activeGrid = document.querySelector(`#${tabName} .masonry-grid`);
+                if (activeGrid && activeGrid.masonry) {
+                    activeGrid.masonry.layout();
+                }
+            }, 100);
+        }
     </script>
 
 </body>

@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery - Blankonia</title>
-    <link href="../css/output.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/cookie-banner.css" rel="stylesheet">
-    <script src="../js/home.js"></script>
-    <script src="../cookie-banner.js"></script>
+    <link href="css/output.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/cookie-banner.css" rel="stylesheet">
+    <script src="js/home.js"></script>
+    <script src="cookie-banner.js"></script>
 </head>
 <body>
 
@@ -775,54 +775,22 @@
     </script>
 
     <script>
-        // CSS Grid Masonry Implementation (fallback for hosting issues)
-        function initializeMasonry() {
-            const grids = document.querySelectorAll('.masonry-grid');
-            
-            grids.forEach(function(grid) {
-                const items = grid.querySelectorAll('.gallery-item');
-                
-                items.forEach(function(item) {
-                    const img = item.querySelector('img');
-                    
-                    if (img.complete) {
-                        setGridSpan(item, img);
-                    } else {
-                        img.addEventListener('load', function() {
-                            setGridSpan(item, img);
-                        });
-                    }
-                });
-            });
-        }
-        
-        function setGridSpan(item, img) {
-            const aspectRatio = img.naturalHeight / img.naturalWidth;
-            const gridRowSpan = Math.ceil(aspectRatio * 30);
-            item.style.setProperty('--grid-row-span', gridRowSpan);
-        }
-        
-        // Initialize on page load
+        // CSS Columns Masonry - Simple and reliable
         document.addEventListener('DOMContentLoaded', function() {
-            initializeMasonry();
-            
-            // Handle tab switching
+            // Force layout refresh after tab switching
             const tabButtons = document.querySelectorAll('.tab-btn');
             tabButtons.forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     setTimeout(function() {
-                        initializeMasonry();
-                    }, 100);
+                        // Force repaint for CSS columns
+                        const activeGrid = document.querySelector('.tab-pane.active .masonry-grid');
+                        if (activeGrid) {
+                            activeGrid.style.visibility = 'hidden';
+                            activeGrid.offsetHeight; // Force reflow
+                            activeGrid.style.visibility = 'visible';
+                        }
+                    }, 50);
                 });
-            });
-            
-            // Handle window resize
-            let resizeTimeout;
-            window.addEventListener('resize', function() {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(function() {
-                    initializeMasonry();
-                }, 250);
             });
         });
 
