@@ -9,8 +9,6 @@
     <link href="../css/cookie-banner.css" rel="stylesheet">
     <script src="../js/home.js"></script>
     <script src="../cookie-banner.js"></script>
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 </head>
 <body>
 
@@ -777,39 +775,44 @@
     </script>
 
     <script>
-        // Initialize Masonry
-        let masonryInstances = {};
-        
-        document.addEventListener('DOMContentLoaded', function() {
+        // CSS Grid Masonry Implementation (fallback for hosting issues)
+        function initializeMasonry() {
             const grids = document.querySelectorAll('.masonry-grid');
             
             grids.forEach(function(grid) {
-                const tabId = grid.closest('.tab-pane').id;
+                const items = grid.querySelectorAll('.gallery-item');
                 
-                masonryInstances[tabId] = new Masonry(grid, {
-                    itemSelector: '.gallery-item',
-                    columnWidth: 300,
-                    gutter: 20,
-                    fitWidth: true,
-                    transitionDuration: '0.3s'
-                });
-
-                // Layout after images load
-                imagesLoaded(grid, function() {
-                    masonryInstances[tabId].layout();
+                items.forEach(function(item) {
+                    const img = item.querySelector('img');
+                    
+                    if (img.complete) {
+                        setGridSpan(item, img);
+                    } else {
+                        img.addEventListener('load', function() {
+                            setGridSpan(item, img);
+                        });
+                    }
                 });
             });
+        }
+        
+        function setGridSpan(item, img) {
+            const aspectRatio = img.naturalHeight / img.naturalWidth;
+            const gridRowSpan = Math.ceil(aspectRatio * 30);
+            item.style.setProperty('--grid-row-span', gridRowSpan);
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMasonry();
             
             // Handle tab switching
             const tabButtons = document.querySelectorAll('.tab-btn');
             tabButtons.forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     setTimeout(function() {
-                        const activeTab = document.querySelector('.tab-pane.active');
-                        if (activeTab && masonryInstances[activeTab.id]) {
-                            masonryInstances[activeTab.id].layout();
-                        }
-                    }, 50);
+                        initializeMasonry();
+                    }, 100);
                 });
             });
             
@@ -818,9 +821,7 @@
             window.addEventListener('resize', function() {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(function() {
-                    Object.values(masonryInstances).forEach(function(masonry) {
-                        masonry.layout();
-                    });
+                    initializeMasonry();
                 }, 250);
             });
         });
