@@ -1,6 +1,24 @@
 # Blankonia Website Security Configuration
 # Essential security headers for GDPR compliance and security best practices
 
+# URL Rewriting for Clean URLs
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Remove .html extension from URLs
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^([^\.]+)$ $1.html [NC,L]
+    
+    # Redirect .html URLs to clean URLs (optional - removes .html from existing links)
+    RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+    RewriteRule ^ /%1? [NC,L,R=301]
+    
+    # Force HTTPS (SSL) - Uncomment when SSL is active on Hostinger
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
 # Security Headers
 <IfModule mod_headers.c>
     # Prevent clickjacking attacks
@@ -21,13 +39,6 @@
     # Basic Content Security Policy (adjust as needed)
     Header always set Content-Security-Policy "default-src 'self' 'unsafe-inline' https:; img-src * data:; font-src * data:; connect-src 'self' https:;"
 </IfModule>
-
-# Force HTTPS (SSL) - Uncomment when SSL is active on Hostinger
-# <IfModule mod_rewrite.c>
-#     RewriteEngine On
-#     RewriteCond %{HTTPS} off
-#     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-# </IfModule>
 
 # HSTS Header (only when HTTPS is active)
 # <IfModule mod_headers.c>

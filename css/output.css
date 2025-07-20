@@ -700,6 +700,10 @@ video {
   display: block;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .flex {
   display: flex;
 }
@@ -825,6 +829,10 @@ video {
   width: 100%;
 }
 
+.min-w-\[140px\] {
+  min-width: 140px;
+}
+
 .max-w-3xl {
   max-width: 48rem;
 }
@@ -869,6 +877,10 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.resize {
+  resize: both;
 }
 
 .list-inside {
@@ -1166,6 +1178,11 @@ video {
   padding-bottom: 60px;
 }
 
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -1311,6 +1328,18 @@ video {
 .shadow-black\/20 {
   --tw-shadow-color: rgb(0 0 0 / 0.2);
   --tw-shadow: var(--tw-shadow-colored);
+}
+
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 .transition-all {

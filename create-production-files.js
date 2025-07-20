@@ -6,15 +6,20 @@ const pathMappings = {
     '../css/': 'css/',
     '../js/': 'js/',
     '../cookie-banner.js': 'cookie-banner.js',
-    '../images/': 'images/'
+    '../images/': 'images/',
+    // Clean URL mappings (already handled in HTML files, but keeping for reference)
+    'index.html': '/',
+    'gallery.html': '/gallery',
+    'contact.html': '/contact',
+    'privacy.html': '/privacy'
 };
 
 // Files to process
 const htmlFiles = [
-    'html/index.html',
-    'html/gallery.html',
-    'html/contact.html',
-    'html/privacy.html'
+    'index.html',
+    'gallery.html',
+    'contact.html',
+    'privacy.html'
 ];
 
 console.log('🚀 Creating production files for Hostinger deployment...\n');
@@ -78,4 +83,10 @@ console.log('   • production/.htaccess → public_html/.htaccess');
 console.log('\n🎯 Also upload these folders:');
 console.log('   • css/ → public_html/css/');
 console.log('   • js/ → public_html/js/');
-console.log('   • images/ → public_html/images/'); 
+console.log('   • images/ → public_html/images/');
+console.log('\n✨ Clean URLs enabled:');
+console.log('   • https://blankonia.gr/ (Home)');
+console.log('   • https://blankonia.gr/gallery (Gallery)');
+console.log('   • https://blankonia.gr/contact (Contact)');
+console.log('   • https://blankonia.gr/privacy (Privacy)');
+console.log('\n🚀 Your site will be available with clean URLs!'); 
